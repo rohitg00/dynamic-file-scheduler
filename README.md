@@ -13,7 +13,7 @@ Traditional solution: Create a separate cron step for each customer → Maintena
 
 ## The Solution
 
-![Dynamic File Share Scheduler](./docs/img/image.png)
+![Dynamic File Share Scheduler](./docs/img/workbench.png)
 
 Use **one** cron step for **all** customers by storing schedules in state:
 

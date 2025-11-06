@@ -9,6 +9,7 @@ export const config: ApiRouteConfig = {
   description: "API endpoint to create or update a customer file share schedule",
   method: "POST",
   path: "/api/schedules",
+  emits: [],
   bodySchema: z.object({
     customerId: z.string().min(1),
     customerEmail: z.string().email(),
@@ -50,15 +51,10 @@ export const config: ApiRouteConfig = {
       }),
     }),
   },
-  emits: ["schedule.created"],
   flows: ["file-share-scheduler"],
 };
 
-export const handler = async (
-  req: any,
-  context: any
-) => {
-  const { logger, state, emit, traceId } = context;
+export const handler: Handlers['CreateSchedule'] = async (req, { logger, state, traceId }) => {
   logger.info("Received schedule creation request", { body: req.body, traceId });
 
   try {
@@ -100,16 +96,6 @@ export const handler = async (
       customerId: schedule.customerId,
       nextRun: schedule.nextRun,
       traceId,
-    });
-
-    // Emit event
-    await emit({
-      topic: "schedule.created",
-      data: {
-        scheduleId,
-        customerId: schedule.customerId,
-        nextRun: schedule.nextRun,
-      },
     });
 
     // Return success response

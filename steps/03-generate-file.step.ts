@@ -1,6 +1,5 @@
 import { EventConfig, Handlers } from "motia";
 import { z } from "zod";
-import type { FileGenerationRequest } from "../types";
 
 export const config: EventConfig = {
   type: "event",
@@ -18,11 +17,7 @@ export const config: EventConfig = {
   flows: ["file-share-scheduler"],
 };
 
-export const handler = async (
-  input: FileGenerationRequest,
-  context: any
-) => {
-  const { logger, state, traceId } = context;
+export const handler: Handlers['GenerateFile'] = async (input, { logger, state, traceId }) => {
   logger.info("Starting file generation", {
     scheduleId: input.scheduleId,
     customerId: input.customerId,

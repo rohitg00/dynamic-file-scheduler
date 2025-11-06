@@ -12,15 +12,12 @@ export const config: CronConfig = {
   flows: ["file-share-scheduler"],
 };
 
-export const handler: Handlers["ScheduleChecker"] = async (
-  _,
-  { logger, state, emit, traceId }
-) => {
+export const handler: Handlers['ScheduleChecker'] = async ({ logger, state, emit, traceId }) => {
   logger.info("Starting schedule check", { traceId });
 
   try {
     // Get all file schedules from state
-    const allSchedules = await state.getGroup<FileSchedule>("file_schedules");
+    const allSchedules = (await state.getGroup("file_schedules")) as FileSchedule[];
 
     if (!allSchedules || allSchedules.length === 0) {
       logger.info("No schedules found", { traceId });
@@ -157,7 +154,7 @@ export const handler: Handlers["ScheduleChecker"] = async (
 
 async function cleanupOldSchedules(state: any, logger: any) {
   try {
-    const allSchedules = await state.getGroup<FileSchedule>("file_schedules");
+    const allSchedules = (await state.getGroup("file_schedules")) as FileSchedule[];
     const currentTime = new Date();
     const thirtyDaysAgo = new Date(
       currentTime.getTime() - 30 * 24 * 60 * 60 * 1000

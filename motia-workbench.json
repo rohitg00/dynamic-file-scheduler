@@ -1,0 +1,23 @@
+[
+  {
+    "id": "file-share-scheduler",
+    "config": {
+      "steps/03-generate-file.step.ts": {
+        "x": 136,
+        "y": 128,
+        "targetHandlePosition": "left"
+      },
+      "steps/02-schedule-checker.step.ts": {
+        "x": -261,
+        "y": 96,
+        "sourceHandlePosition": "right",
+        "targetHandlePosition": "left"
+      },
+      "steps/01-create-schedule.step.ts": {
+        "x": -647,
+        "y": 99,
+        "sourceHandlePosition": "right"
+      }
+    }
+  }
+]

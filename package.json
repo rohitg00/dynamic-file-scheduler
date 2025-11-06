@@ -1,0 +1,33 @@
+{
+  "name": "dynamic-file-share-scheduler",
+  "version": "1.0.0",
+  "description": "Dynamic file share scheduling with Motia using cron + state pattern",
+  "scripts": {
+    "postinstall": "motia install",
+    "dev": "motia dev",
+    "dev:debug": "motia dev --verbose",
+    "generate-types": "motia generate-types",
+    "build": "motia build",
+    "clean": "rm -rf dist node_modules python_modules .motia .mermaid"
+  },
+  "keywords": [
+    "motia",
+    "scheduling",
+    "cron"
+  ],
+  "dependencies": {
+    "motia": "latest",
+    "zod": "^3.22.4",
+    "@motiadev/core": "0.8.6-beta.143",
+    "@motiadev/plugin-logs": "0.8.6-beta.143",
+    "@motiadev/plugin-states": "0.8.6-beta.143",
+    "@motiadev/plugin-endpoint": "0.8.6-beta.143",
+    "@motiadev/plugin-observability": "0.8.6-beta.143"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.3.18",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

@@ -17,3 +17,27 @@ declare module 'motia' {
     'CreateSchedule': ApiRouteHandler<{ customerId: string; customerEmail: string; scheduleType: 'daily' | 'weekly' | 'monthly-first-weekday' | 'monthly-last-weekday' | 'custom'; timezone?: string; fileType?: string; format?: 'excel' | 'csv' | 'pdf'; config: { dayOfWeek?: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday'; time?: string; cronExpression?: string; weekOfMonth?: 'first' | 'last' } }, ApiResponse<201, { success: boolean; message: string; data: { scheduleId: string; nextRun: string; schedule?: unknown } }>, never>
   }
 }
+
+// Custom type definitions for the Dynamic File Share Scheduler
+export interface FileSchedule {
+  scheduleId: string;
+  customerId: string;
+  customerEmail: string;
+  scheduleType: 'daily' | 'weekly' | 'monthly-first-weekday' | 'monthly-last-weekday' | 'custom';
+  nextRun: string;
+  lastRun?: string;
+  timezone: string;
+  fileType: string;
+  format: 'excel' | 'csv' | 'pdf';
+  status: 'active' | 'paused' | 'failed';
+  config: {
+    dayOfWeek?: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
+    time?: string;
+    cronExpression?: string;
+    weekOfMonth?: 'first' | 'last';
+  };
+  createdAt: string;
+  updatedAt: string;
+  executionCount: number;
+  lastError?: string;
+}
